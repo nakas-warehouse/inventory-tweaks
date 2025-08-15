@@ -11,7 +11,7 @@ namespace InventoryTweaks.Common.Compatibility;
 /// <remarks>
 ///     <para>
 ///         Hooks into <c>MagicStorage.CraftingGUI.GetHeader</c> and
-///         <c>MagicStorage.UI.States.CraftingUIState.RecipesPage.GetRecipe</c> to return
+///         <c>MagicStorage.UI.States.CraftingUIState.RecipesPage.GetMainZoneItem</c> to return
 ///         cloned item instances instead of direct references. This prevents shared state between
 ///         different UI components modifying the same item instance simultaneously.
 ///     </para>
@@ -32,7 +32,7 @@ public sealed class MagicStorageHooks : ILoadable
     void ILoadable.Load(Mod mod)
     {
         MonoModHooks.Add(typeof(CraftingGUI).GetMethod("GetHeader", BindingFlags.NonPublic | BindingFlags.Static), CraftingGUI_GetHeader_Hook);
-        MonoModHooks.Add(typeof(CraftingUIState).GetNestedType("RecipesPage").GetMethod("GetRecipe", BindingFlags.NonPublic | BindingFlags.Instance), CraftingUIState_GetRecipe_Hook);
+        MonoModHooks.Add(typeof(CraftingUIState).GetNestedType("RecipesPage").GetMethod("GetMainZoneItem", BindingFlags.NonPublic | BindingFlags.Instance), CraftingUIState_GetMainZoneItem_Hook);
     }
 
     void ILoadable.Unload() { }
@@ -44,7 +44,7 @@ public sealed class MagicStorageHooks : ILoadable
     }
 
     // Makes the item a clone instead of a reference to prevent the same instance being modified with different parameters at once.
-    private static Item CraftingUIState_GetRecipe_Hook(GetRecipeCallback orig, CraftingUIState.RecipesPage self, int slot, ref int context)
+    private static Item CraftingUIState_GetMainZoneItem_Hook(GetRecipeCallback orig, CraftingUIState.RecipesPage self, int slot, ref int context)
     {
         return orig(self, slot, ref context).Clone();
     }
