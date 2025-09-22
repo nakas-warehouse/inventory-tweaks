@@ -75,7 +75,7 @@ public sealed class ItemRefillSystem : ModSystem
     public const int PLAYER_INVENTORY_LENGTH = 57;
 
     /// <summary>
-    ///     Gets or sets the keybind for mouse item refill.
+    ///     Gets the keybind for mouse item refill.
     /// </summary>
     public static ModKeybind Keybind { get; private set; }
 
