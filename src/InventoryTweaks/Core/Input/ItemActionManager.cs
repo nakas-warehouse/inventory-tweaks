@@ -62,6 +62,7 @@ public sealed class ItemActionManager : ILoadable
     /// <returns>
     ///     <c>true</c> if the player can quick-shift in the given item slot; otherwise, <c>false</c>.
     /// </returns>
+    [JITWhenModsEnabled("MagicStorage")]
     public static bool CanQuickShiftMagicStorage(Item[] inv, int context, int slot)
     {
         return ItemSlotUtils.IsInventoryContext(context) && Main.mouseLeft && Config.EnableQuickShift && ItemSlot.ShiftInUse && IsStorageOpen(inv, context, slot);
