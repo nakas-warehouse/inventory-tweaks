@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\tModLoader.targets" />
+
+    <PropertyGroup>
+        <LangVersion>12</LangVersion>
+        <TargetFramework>net8.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="MagicStorage">
+        <HintPath>lib\MagicStorage.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>
