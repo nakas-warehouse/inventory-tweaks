@@ -6,7 +6,7 @@
 public static class ItemExtensions
 {
     /// <summary>
-    ///     Checks whether an item has a full stack or not.
+    ///     Checks whether an item has a full stack.
     /// </summary>
     /// <param name="item">The item to check.</param>
     /// <returns><c>true</c> if the item has a full stack; otherwise, <c>false</c>.</returns>

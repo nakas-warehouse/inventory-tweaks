@@ -1,9 +1,7 @@
-﻿using JetBrains.Annotations;
-using Terraria.ModLoader.Config;
+﻿using Terraria.ModLoader.Config;
 
 namespace InventoryTweaks.Common.Configuration;
 
-[UsedImplicitly(ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature)]
 public sealed partial class ClientConfiguration : ModConfig
 {
     /// <summary>

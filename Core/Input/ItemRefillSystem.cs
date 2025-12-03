@@ -1,7 +1,6 @@
 ﻿using InventoryTweaks.Common.Configuration;
 using InventoryTweaks.Core.Enums;
 using InventoryTweaks.Utilities;
-using JetBrains.Annotations;
 using Terraria.Audio;
 
 namespace InventoryTweaks.Core.Input;
@@ -24,7 +23,6 @@ namespace InventoryTweaks.Core.Input;
 ///         sorting strategy and inventory feedback sounds.
 ///     </para>
 /// </remarks>
-[UsedImplicitly(ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature)]
 public sealed class ItemRefillSystem : ModSystem
 {
     /// <summary>
@@ -40,7 +38,6 @@ public sealed class ItemRefillSystem : ModSystem
     ///         sorting strategy and inventory feedback sounds.
     ///     </para>
     /// </remarks>
-    [UsedImplicitly(ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature)]
     public sealed class ItemRefillGlobalItem : GlobalItem
     {
         public override void OnConsumeItem(Item item, Player player)

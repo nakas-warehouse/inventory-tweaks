@@ -1,6 +1,5 @@
 ﻿using InventoryTweaks.Common.Configuration;
 using InventoryTweaks.Utilities;
-using JetBrains.Annotations;
 using Terraria.Audio;
 using Terraria.UI;
 
@@ -22,14 +21,12 @@ namespace InventoryTweaks.Core.Graphics;
 ///         movement smoothing, hover effects and inventory feedback sounds.
 ///     </para>
 /// </remarks>
-[UsedImplicitly(ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature)]
 public sealed class ItemSlotRendering : ILoadable
 {
     /// <summary>
     ///     Contains visual metadata used and updated during inventory slot rendering for each
     ///     <see cref="Item" /> instance.
     /// </summary>
-    [UsedImplicitly(ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature)]
     public sealed class ItemSlotRenderingGlobalItem : GlobalItem
     {
         /// <summary>

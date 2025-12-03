@@ -1,6 +1,5 @@
 ﻿using InventoryTweaks.Common.Configuration;
 using InventoryTweaks.Utilities;
-using JetBrains.Annotations;
 using Terraria.UI;
 
 namespace InventoryTweaks.Core.Input;
@@ -19,7 +18,6 @@ namespace InventoryTweaks.Core.Input;
 ///         toggles for enabling or disabling item distribution.
 ///     </para>
 /// </remarks>
-[UsedImplicitly(ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature)]
 public sealed class ItemDistributionManager : ILoadable
 {
     /// <summary>

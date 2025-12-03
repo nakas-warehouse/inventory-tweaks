@@ -93,15 +93,35 @@ Configs: {
 	StackType: {
 		Tooltip: Determine how stack splitting behaves.
 		Default.Label: Default
-		Half.Label: Half
-		Full.Label: Full
-		Single.Label: Single
+
+		Half: {
+			Label: Half
+			Tooltip: ""
+		}
+
+		Full: {
+			Label: Full
+			Tooltip: ""
+		}
+
+		Single: {
+			Label: Single
+			Tooltip: ""
+		}
 	}
 
 	SortType: {
 		Tooltip: Determine how stacks are prioritized during refills.
-		Ascending.Label: Ascending
-		Descending.Label: Descending
+
+		Ascending: {
+			Label: Ascending
+			Tooltip: ""
+		}
+
+		Descending: {
+			Label: Descending
+			Tooltip: ""
+		}
 	}
 }
 

@@ -1,6 +1,5 @@
 ﻿using InventoryTweaks.Common.Configuration;
 using InventoryTweaks.Utilities;
-using JetBrains.Annotations;
 using MagicStorage;
 using MonoMod.Cil;
 using Terraria.UI;
@@ -24,7 +23,6 @@ namespace InventoryTweaks.Core.Input;
 ///         toggles for enabling or disabling quick-shift and quick-control features.
 ///     </para>
 /// </remarks>
-[UsedImplicitly(ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature)]
 public sealed class ItemActionManager : ILoadable
 {
     /// <summary>

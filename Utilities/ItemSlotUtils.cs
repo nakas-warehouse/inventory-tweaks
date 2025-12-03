@@ -9,7 +9,7 @@ namespace InventoryTweaks.Utilities;
 public static class ItemSlotUtils
 {
     /// <summary>
-    ///     Checks whether an item slot context represents an inventory slot or not.
+    ///     Checks whether an item slot context represents an inventory slot.
     /// </summary>
     /// <param name="context">The context to check.</param>
     /// <returns><c>true</c> if the provided context represents an inventory slot; otherwise, <c>false</c>.</returns>
@@ -42,7 +42,7 @@ public static class ItemSlotUtils
     }
 
     /// <summary>
-    ///     Checks whether an item slot context represents an NPC slot or not.
+    ///     Checks whether an item slot context represents an NPC slot.
     /// </summary>
     /// <param name="context">The context to check.</param>
     /// <returns><c>true</c> if the provided context represents an NPC slot; otherwise, <c>false</c>.</returns>
