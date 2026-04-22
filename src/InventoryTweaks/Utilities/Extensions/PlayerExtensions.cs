@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace InventoryTweaks.Utilities;
+namespace InventoryTweaks.Utilities.Extensions;
 
 /// <summary>
 ///     Provides <see cref="Player" /> extension methods.
@@ -12,12 +12,12 @@ public static class PlayerExtensions
     /// </summary>
     /// <param name="player">The player whose open chest inventory is to be retrieved.</param>
     /// <param name="inventory">
-    ///     When this method returns <c>true</c>, contains the inventory items of the opened chest.
-    ///     When this method returns <c>false</c>, contains <c>null</c>.
+    ///     When this method returns <see langword="true"/>, contains the inventory items of the opened chest.
+    ///     When this method returns <see langword="false"/>, contains <c>null</c>.
     /// </param>
     /// <returns>
-    ///     <c>true</c> if the player has an open chest and the inventory was retrieved successfully;
-    ///     otherwise, <c>false</c>.
+    ///     <see langword="true"/> if the player has an open chest and the inventory was retrieved successfully;
+    ///     otherwise, <see langword="false"/>.
     /// </returns>
     public static bool TryGetChest(this Player player, [MaybeNullWhen(false)] out Item[] inventory)
     {
@@ -40,12 +40,12 @@ public static class PlayerExtensions
     /// </summary>
     /// <param name="player">The player whose open piggy bank inventory is to be retrieved.</param>
     /// <param name="inventory">
-    ///     When this method returns <c>true</c>, contains the inventory items of the opened piggy bank.
-    ///     When this method returns <c>false</c>, contains <c>null</c>.
+    ///     When this method returns <see langword="true"/>, contains the inventory items of the opened piggy bank.
+    ///     When this method returns <see langword="false"/>, contains <c>null</c>.
     /// </param>
     /// <returns>
-    ///     <c>true</c> if the player has an open piggy bank and the inventory was retrieved successfully;
-    ///     otherwise, <c>false</c>.
+    ///     <see langword="true"/> if the player has an open piggy bank and the inventory was retrieved successfully;
+    ///     otherwise, <see langword="false"/>.
     /// </returns>
     public static bool TryGetPiggy(this Player player, [MaybeNullWhen(false)] out Item[] inventory)
     {
@@ -68,12 +68,12 @@ public static class PlayerExtensions
     /// </summary>
     /// <param name="player">The player whose open safe inventory is to be retrieved.</param>
     /// <param name="inventory">
-    ///     When this method returns <c>true</c>, contains the inventory items of the opened safe.
-    ///     When this method returns <c>false</c>, contains <c>null</c>.
+    ///     When this method returns <see langword="true"/>, contains the inventory items of the opened safe.
+    ///     When this method returns <see langword="false"/>, contains <c>null</c>.
     /// </param>
     /// <returns>
-    ///     <c>true</c> if the player has an open safe and the inventory was retrieved successfully;
-    ///     otherwise, <c>false</c>.
+    ///     <see langword="true"/> if the player has an open safe and the inventory was retrieved successfully;
+    ///     otherwise, <see langword="false"/>.
     /// </returns>
     public static bool TryGetSafe(this Player player, [MaybeNullWhen(false)] out Item[] inventory)
     {
@@ -96,12 +96,12 @@ public static class PlayerExtensions
     /// </summary>
     /// <param name="player">The player whose open void vault inventory is to be retrieved.</param>
     /// <param name="inventory">
-    ///     When this method returns <c>true</c>, contains the inventory items of the opened void vault.
-    ///     When this method returns <c>false</c>, contains <c>null</c>.
+    ///     When this method returns <see langword="true"/>, contains the inventory items of the opened void vault.
+    ///     When this method returns <see langword="false"/>, contains <c>null</c>.
     /// </param>
     /// <returns>
-    ///     <c>true</c> if the player has an open void vault and the inventory was retrieved successfully;
-    ///     otherwise, <c>false</c>.
+    ///     <see langword="true"/> if the player has an open void vault and the inventory was retrieved successfully;
+    ///     otherwise, <see langword="false"/>.
     /// </returns>
     public static bool TryGetVoidVault(this Player player, [MaybeNullWhen(false)] out Item[] inventory)
     {
@@ -126,12 +126,12 @@ public static class PlayerExtensions
     /// </summary>
     /// <param name="player">The player whose open container inventory is to be retrieved.</param>
     /// <param name="inventory">
-    ///     When this method returns <c>true</c>, contains the inventory items of the opened container.
-    ///     When this method returns <c>false</c>, contains <c>null</c>.
+    ///     When this method returns <see langword="true"/>, contains the inventory items of the opened container.
+    ///     When this method returns <see langword="false"/>, contains <c>null</c>.
     /// </param>
     /// <returns>
-    ///     <c>true</c> if the player is accessing any supported container and the inventory was
-    ///     retrieved successfully; otherwise, <c>false</c>.
+    ///     <see langword="true"/> if the player is accessing any supported container and the inventory was
+    ///     retrieved successfully; otherwise, <see langword="false"/>.
     /// </returns>
     public static bool TryGetContainer(this Player player, [MaybeNullWhen(false)] out Item[] inventory)
     {

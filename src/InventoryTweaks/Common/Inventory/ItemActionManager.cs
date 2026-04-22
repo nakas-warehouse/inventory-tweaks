@@ -4,7 +4,7 @@ using MagicStorage;
 using MonoMod.Cil;
 using Terraria.UI;
 
-namespace InventoryTweaks.Core.Input;
+namespace InventoryTweaks.Common.Inventory;
 
 /// <summary>
 ///     Handles quick-shift and quick-control interactions for item slots.
@@ -58,12 +58,12 @@ public sealed class ItemActionManager : ILoadable
     /// <param name="context">The context of the item slot.</param>
     /// <param name="slot">The index of the item slot.</param>
     /// <returns>
-    ///     <c>true</c> if the player can quick-shift in the given item slot; otherwise, <c>false</c>.
+    ///     <see langword="true"/> if the player can quick-shift in the given item slot; otherwise, <see langword="false"/>.
     /// </returns>
     [JITWhenModsEnabled("MagicStorage")]
     public static bool CanQuickShiftMagicStorage(Item[] inv, int context, int slot)
     {
-        return ItemSlotUtils.IsInventoryContext(context) && Main.mouseLeft && Config.EnableQuickShift && ItemSlot.ShiftInUse && IsStorageOpen(inv, context, slot);
+        return ItemSlotUtilities.IsInventoryContext(context) && Main.mouseLeft && Config.EnableQuickShift && ItemSlot.ShiftInUse && IsStorageOpen(inv, context, slot);
     }
 
     /// <summary>
@@ -71,11 +71,11 @@ public sealed class ItemActionManager : ILoadable
     /// </summary>
     /// <param name="context">The context of the item slot.</param>
     /// <returns>
-    ///     <c>true</c> if the player can quick-shift in the given item slot; otherwise, <c>false</c>.
+    ///     <see langword="true"/> if the player can quick-shift in the given item slot; otherwise, <see langword="false"/>.
     /// </returns>
     public static bool CanQuickShift(int context)
     {
-        return ItemSlotUtils.IsInventoryContext(context) && Main.mouseLeft && Config.EnableQuickShift && ItemSlot.ShiftInUse && InputUtils.HasCursorOverride;
+        return ItemSlotUtilities.IsInventoryContext(context) && Main.mouseLeft && Config.EnableQuickShift && ItemSlot.ShiftInUse && InputUtilities.HasCursorOverride;
     }
 
     /// <summary>
@@ -84,11 +84,11 @@ public sealed class ItemActionManager : ILoadable
     /// <param name="context">The context of the item slot.</param>
     /// <param name="slot">The index of the item slot.</param>
     /// <returns>
-    ///     <c>true</c> if the player can quick-control in the given item slot; otherwise, <c>false</c>.
+    ///     <see langword="true"/> if the player can quick-control in the given item slot; otherwise, <see langword="false"/>.
     /// </returns>
     public static bool CanQuickControl(int context, int slot)
     {
-        return ItemSlotUtils.IsInventoryContext(context) && Main.mouseLeft && Config.EnableQuickControl && ItemSlot.ControlInUse && slot != LastTrashSlot && InputUtils.HasCursorOverride;
+        return ItemSlotUtilities.IsInventoryContext(context) && Main.mouseLeft && Config.EnableQuickControl && ItemSlot.ControlInUse && slot != LastTrashSlot && InputUtilities.HasCursorOverride;
     }
 
     // Handles caching the last item slot used to trash an item to prevent endless trashing.
@@ -173,7 +173,7 @@ public sealed class ItemActionManager : ILoadable
                 (
                     static (bool value, int context, int slot) =>
                     {
-                        return !ItemDistributionManager.Inserting && ItemSlotUtils.IsInventoryContext(context) && (slot != LastEquipSlot || Main.mouseRightRelease);
+                        return !ItemDistributionManager.Inserting && ItemSlotUtilities.IsInventoryContext(context) && (slot != LastEquipSlot || Main.mouseRightRelease);
                     }
                 );
             }

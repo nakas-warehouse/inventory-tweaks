@@ -1,0 +1,11 @@
+<Project Sdk="Tomat.Terraria.ModLoader.Sdk/2.0.0">
+
+    <Import Project="..\..\build\Mod.Build.targets" />
+
+    <ItemGroup>
+      <Reference Include="MagicStorage">
+        <HintPath>lib\MagicStorage.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>

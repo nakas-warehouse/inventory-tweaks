@@ -6,13 +6,13 @@ namespace InventoryTweaks.Utilities;
 /// <summary>
 ///     Provides <see cref="ItemSlot"/> utility methods.
 /// </summary>
-public static class ItemSlotUtils
+public static class ItemSlotUtilities
 {
     /// <summary>
     ///     Checks whether an item slot context represents an inventory slot.
     /// </summary>
     /// <param name="context">The context to check.</param>
-    /// <returns><c>true</c> if the provided context represents an inventory slot; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true"/> if the provided context represents an inventory slot; otherwise, <see langword="false"/>.</returns>
     public static bool IsInventoryContext(int context)
     {
         return context == ItemSlot.Context.InventoryItem
@@ -45,7 +45,7 @@ public static class ItemSlotUtils
     ///     Checks whether an item slot context represents an NPC slot.
     /// </summary>
     /// <param name="context">The context to check.</param>
-    /// <returns><c>true</c> if the provided context represents an NPC slot; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true"/> if the provided context represents an NPC slot; otherwise, <see langword="false"/>.</returns>
     public static bool IsNPCContext(int context)
     {
         return context == ItemSlot.Context.ShopItem;

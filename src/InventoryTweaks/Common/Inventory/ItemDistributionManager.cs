@@ -1,8 +1,9 @@
 ﻿using InventoryTweaks.Common.Configuration;
 using InventoryTweaks.Utilities;
+using InventoryTweaks.Utilities.Extensions;
 using Terraria.UI;
 
-namespace InventoryTweaks.Core.Input;
+namespace InventoryTweaks.Common.Inventory;
 
 /// <summary>
 ///     Handles item distribution for item slots.
@@ -77,7 +78,7 @@ public sealed class ItemDistributionManager : ILoadable
     {
         orig(inv, context, slot);
 
-        if (!Config.EnableDistribution || !ItemSlotUtils.IsInventoryContext(context) || ItemSlotUtils.IsNPCContext(context) || Main.mouseItem.IsAir)
+        if (!Config.EnableDistribution || !ItemSlotUtilities.IsInventoryContext(context) || ItemSlotUtilities.IsNPCContext(context) || Main.mouseItem.IsAir)
         {
             return;
         }

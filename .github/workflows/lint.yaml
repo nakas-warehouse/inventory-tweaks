@@ -1,0 +1,26 @@
+name: .NET Lint
+
+on:
+  push:
+    branches: '**'
+  pull_request:
+    branches: '**'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Run .NET restore
+      run: dotnet restore
+
+    - name: Run .NET formatter
+      run: dotnet format style AAMod.sln --verify-no-changes

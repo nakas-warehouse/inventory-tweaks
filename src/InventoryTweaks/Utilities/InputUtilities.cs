@@ -3,7 +3,7 @@
 /// <summary>
 ///     Provides input utility methods.
 /// </summary>
-public static class InputUtils
+public static class InputUtilities
 {
     /// <summary>
     ///     Gets whether the cursor has an override.

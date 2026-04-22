@@ -81,7 +81,7 @@ public sealed class ItemSlotRendering : ILoadable
         Color environmentColor
     )
     {
-        if (!ItemSlotUtils.IsInventoryContext(context))
+        if (!ItemSlotUtilities.IsInventoryContext(context))
         {
             return orig(item, context, spriteBatch, screenPositionForItemCenter, scale, sizeLimit, environmentColor);
         }

@@ -1,9 +1,9 @@
 ﻿using InventoryTweaks.Common.Configuration;
 using InventoryTweaks.Core.Enums;
-using InventoryTweaks.Utilities;
+using InventoryTweaks.Utilities.Extensions;
 using Terraria.Audio;
 
-namespace InventoryTweaks.Core.Input;
+namespace InventoryTweaks.Common.Inventory;
 
 /// <summary>
 ///     Handles automatic refilling of item stacks when consumed or manually triggered.
