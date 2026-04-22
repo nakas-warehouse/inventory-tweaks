@@ -23,4 +23,4 @@ jobs:
       run: dotnet restore
 
     - name: Run .NET formatter
-      run: dotnet format style AAMod.sln --verify-no-changes
+      run: dotnet format style InventoryTweaks.sln --verify-no-changes
