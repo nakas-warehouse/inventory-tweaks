@@ -4,7 +4,7 @@ using MagicStorage;
 using MonoMod.Cil;
 using Terraria.UI;
 
-namespace InventoryTweaks.Common.Inventory;
+namespace InventoryTweaks.Common.Tweaks;
 
 /// <summary>
 ///     Handles quick-shift and quick-control interactions for item slots.
@@ -26,6 +26,11 @@ namespace InventoryTweaks.Common.Inventory;
 public sealed class ItemActionManager : ILoadable
 {
     /// <summary>
+    ///     Gets the <see cref="ClientConfiguration" /> instance.
+    /// </summary>
+    private static ClientConfiguration Config => ClientConfiguration.Instance;
+
+    /// <summary>
     ///     Gets or sets the index of the last item slot that the player used to trash an item.
     /// </summary>
     public static int LastTrashSlot { get; private set; } = -1;
@@ -34,11 +39,6 @@ public sealed class ItemActionManager : ILoadable
     ///     Gets or sets the index of the last item slot that the player used to equip an item.
     /// </summary>
     public static int LastEquipSlot { get; private set; } = -1;
-
-    /// <summary>
-    ///     Gets the <see cref="ClientConfiguration" /> instance.
-    /// </summary>
-    private static ClientConfiguration Config => ClientConfiguration.Instance;
 
     void ILoadable.Load(Mod mod)
     {
@@ -58,7 +58,8 @@ public sealed class ItemActionManager : ILoadable
     /// <param name="context">The context of the item slot.</param>
     /// <param name="slot">The index of the item slot.</param>
     /// <returns>
-    ///     <see langword="true"/> if the player can quick-shift in the given item slot; otherwise, <see langword="false"/>.
+    ///     <see langword="true" /> if the player can quick-shift in the given item slot; otherwise,
+    ///     <see langword="false" />.
     /// </returns>
     [JITWhenModsEnabled("MagicStorage")]
     public static bool CanQuickShiftMagicStorage(Item[] inv, int context, int slot)
@@ -71,7 +72,8 @@ public sealed class ItemActionManager : ILoadable
     /// </summary>
     /// <param name="context">The context of the item slot.</param>
     /// <returns>
-    ///     <see langword="true"/> if the player can quick-shift in the given item slot; otherwise, <see langword="false"/>.
+    ///     <see langword="true" /> if the player can quick-shift in the given item slot; otherwise,
+    ///     <see langword="false" />.
     /// </returns>
     public static bool CanQuickShift(int context)
     {
@@ -84,7 +86,8 @@ public sealed class ItemActionManager : ILoadable
     /// <param name="context">The context of the item slot.</param>
     /// <param name="slot">The index of the item slot.</param>
     /// <returns>
-    ///     <see langword="true"/> if the player can quick-control in the given item slot; otherwise, <see langword="false"/>.
+    ///     <see langword="true" /> if the player can quick-control in the given item slot; otherwise,
+    ///     <see langword="false" />.
     /// </returns>
     public static bool CanQuickControl(int context, int slot)
     {
@@ -198,8 +201,15 @@ public sealed class ItemActionManager : ILoadable
 
         var item = inv[slot];
 
-        var hasItem = item is { favorited: false, IsAir: false };
-        var hasStorage = storagePlayer.ViewingStorage() is { X: > 0, Y: > 0 };
+        var hasItem = item is
+        {
+            favorited: false, IsAir: false
+        };
+
+        var hasStorage = storagePlayer.ViewingStorage() is
+        {
+            X: > 0, Y: > 0
+        };
 
         return hasContext && hasItem && hasStorage;
     }

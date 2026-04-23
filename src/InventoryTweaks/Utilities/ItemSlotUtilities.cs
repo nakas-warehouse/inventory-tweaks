@@ -1,10 +1,9 @@
-﻿using System.Runtime.CompilerServices;
-using Terraria.UI;
+﻿using Terraria.UI;
 
 namespace InventoryTweaks.Utilities;
 
 /// <summary>
-///     Provides <see cref="ItemSlot"/> utility methods.
+///     Provides <see cref="ItemSlot" /> utility methods.
 /// </summary>
 public static class ItemSlotUtilities
 {
@@ -12,7 +11,10 @@ public static class ItemSlotUtilities
     ///     Checks whether an item slot context represents an inventory slot.
     /// </summary>
     /// <param name="context">The context to check.</param>
-    /// <returns><see langword="true"/> if the provided context represents an inventory slot; otherwise, <see langword="false"/>.</returns>
+    /// <returns>
+    ///     <see langword="true" /> if the provided context represents an inventory slot; otherwise,
+    ///     <see langword="false" />.
+    /// </returns>
     public static bool IsInventoryContext(int context)
     {
         return context == ItemSlot.Context.InventoryItem
@@ -45,7 +47,10 @@ public static class ItemSlotUtilities
     ///     Checks whether an item slot context represents an NPC slot.
     /// </summary>
     /// <param name="context">The context to check.</param>
-    /// <returns><see langword="true"/> if the provided context represents an NPC slot; otherwise, <see langword="false"/>.</returns>
+    /// <returns>
+    ///     <see langword="true" /> if the provided context represents an NPC slot; otherwise,
+    ///     <see langword="false" />.
+    /// </returns>
     public static bool IsNPCContext(int context)
     {
         return context == ItemSlot.Context.ShopItem;

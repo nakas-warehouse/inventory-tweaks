@@ -3,7 +3,7 @@ using InventoryTweaks.Utilities;
 using InventoryTweaks.Utilities.Extensions;
 using Terraria.UI;
 
-namespace InventoryTweaks.Common.Inventory;
+namespace InventoryTweaks.Common.Tweaks;
 
 /// <summary>
 ///     Handles item distribution for item slots.
@@ -22,6 +22,11 @@ namespace InventoryTweaks.Common.Inventory;
 public sealed class ItemDistributionManager : ILoadable
 {
     /// <summary>
+    ///     Gets the <see cref="ClientConfiguration" /> instance.
+    /// </summary>
+    private static ClientConfiguration Config => ClientConfiguration.Instance;
+
+    /// <summary>
     ///     Gets or sets the index of the last item slot that the player used to insert an item.
     /// </summary>
     public static int LastInsertionSlot { get; private set; } = -1;
@@ -30,11 +35,6 @@ public sealed class ItemDistributionManager : ILoadable
     ///     Gets or sets whether the player is inserting items.
     /// </summary>
     public static bool Inserting { get; private set; }
-
-    /// <summary>
-    ///     Gets the <see cref="ClientConfiguration" /> instance.
-    /// </summary>
-    private static ClientConfiguration Config => ClientConfiguration.Instance;
 
     void ILoadable.Load(Mod mod)
     {

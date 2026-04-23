@@ -4,7 +4,7 @@ using InventoryTweaks.Core.Enums;
 using MonoMod.Cil;
 using Terraria.UI;
 
-namespace InventoryTweaks.Common.Inventory;
+namespace InventoryTweaks.Common.Tweaks;
 
 public delegate void ItemPickupCallback(ref ItemPickupContext context);
 
@@ -14,19 +14,19 @@ public ref struct ItemPickupContext
     ///     Gets or sets the stack of the context.
     /// </summary>
     public int Stack { get; set; }
-    
+
     /// <summary>
-    ///     Gets the index of the item within <see cref="Inventory"/>.
+    ///     Gets the index of the item within <see cref="Inventory" />.
     /// </summary>
     public int Slot { get; }
-    
+
     /// <summary>
     ///     Gets the inventory containing the item.
     /// </summary>
     public Item[] Inventory { get; }
 
     /// <summary>
-    ///     Gets the item at the specified <see cref="Slot"/>. Shorthand for 
+    ///     Gets the item at the specified <see cref="Slot" />. Shorthand for
     /// </summary>
     public Item Item => Inventory[Slot];
 
@@ -34,9 +34,9 @@ public ref struct ItemPickupContext
     {
         ArgumentOutOfRangeException.ThrowIfNegative(stack, nameof(stack));
         ArgumentOutOfRangeException.ThrowIfNegative(slot, nameof(slot));
-        
+
         ArgumentNullException.ThrowIfNull(inventory, nameof(inventory));
-        
+
         Stack = stack;
         Slot = slot;
         Inventory = inventory;
@@ -50,18 +50,33 @@ public sealed class ItemPickupHooks : ModSystem
     public override void Unload()
     {
         base.Unload();
-        
+
         Callbacks?.Clear();
         Callbacks = null;
     }
 
+    /// <summary>
+    ///     Subscribes the specified callback to the item pickup event.
+    /// </summary>
+    /// <param name="callback">The callback to invoke when an item is picked up.</param>
+    /// <exception cref="ArgumentNullException">
+    ///     Thrown if <paramref name="callback" /> is <see langword="null" />.
+    /// </exception>
     public static void Subscribe(ItemPickupCallback callback)
     {
         ArgumentNullException.ThrowIfNull(callback, nameof(callback));
-        
+
         Callbacks.Add(callback);
     }
 
+    /// <summary>
+    ///     Unsubscribes the specified callback from the item pickup event.
+    /// </summary>
+    /// <param name="callback">The callback to remove.</param>
+    /// <returns><see langword="true"/> if the callback was successfully unsubscribed; otherwise, <see langword="false"/>.</returns>
+    /// <exception cref="ArgumentNullException">
+    ///     Thrown if <paramref name="callback" /> is <see langword="null" />.
+    /// </exception>
     public static bool Unsubscribe(ItemPickupCallback callback)
     {
         ArgumentNullException.ThrowIfNull(callback, nameof(callback));
@@ -83,7 +98,7 @@ public sealed class ItemPickupSystem : ModSystem
     public override void Load()
     {
         base.Load();
-        
+
         IL_ItemSlot.PickupItemIntoMouse += ItemSlot_PickupItemIntoMouse_Edit;
     }
 

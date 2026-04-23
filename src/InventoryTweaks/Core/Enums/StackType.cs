@@ -3,6 +3,8 @@
 public enum StackType
 {
     Single,
+
     Half,
+
     Full
 }

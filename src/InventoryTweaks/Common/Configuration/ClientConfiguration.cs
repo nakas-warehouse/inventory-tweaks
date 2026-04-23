@@ -77,8 +77,5 @@ public sealed class ClientConfiguration : ModConfig
     [DefaultValue(typeof(StackType), nameof(StackType.Single))]
     public StackType StackType { get; set; } = StackType.Single;
 
-    [DefaultValue(typeof(SortType), nameof(SortType.Ascending))]
-    public SortType SortType { get; set; } = SortType.Ascending;
-
     #endregion
 }
