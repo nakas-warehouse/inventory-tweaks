@@ -15,16 +15,16 @@ namespace InventoryTweaks.Common.Tweaks;
 ///         <see cref="ItemSlot" />.
 ///     </para>
 ///     <para>
-///         Configuration options are available in <see cref="ClientConfiguration" />, including
+///         Configuration options are available in <see cref="ClientSideConfiguration" />, including
 ///         toggles for enabling or disabling item distribution.
 ///     </para>
 /// </remarks>
 public sealed class ItemDistributionManager : ILoadable
 {
     /// <summary>
-    ///     Gets the <see cref="ClientConfiguration" /> instance.
+    ///     Gets the <see cref="ClientSideConfiguration" /> instance.
     /// </summary>
-    private static ClientConfiguration Config => ClientConfiguration.Instance;
+    private static ClientSideConfiguration Config => ClientSideConfiguration.Instance;
 
     /// <summary>
     ///     Gets or sets the index of the last item slot that the player used to insert an item.

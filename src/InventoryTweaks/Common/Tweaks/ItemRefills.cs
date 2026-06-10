@@ -110,7 +110,7 @@ public static class ItemRefillUtilities
         var chest = player.TryGetContainer(out var container);
 
         var inventory = chest ? container : player.inventory;
-        var length = chest ? container.Length : Inventory.LENGTH;
+        var length = chest ? container.Length : Inventory.Length;
 
         Refill(item, inventory, length, callback);
     }
@@ -122,7 +122,7 @@ public sealed class SelectedItemRefillGlobalItem : GlobalItem
     {
         base.OnConsumeItem(item, player);
 
-        if (!ClientConfiguration.Instance.EnableStackRefill)
+        if (!ClientSideConfiguration.Instance.EnableStackRefill)
         {
             return;
         }
@@ -136,7 +136,7 @@ public sealed class SelectedItemRefillGlobalItem : GlobalItem
 
         ItemRefillUtilities.Refill(player.HeldItem, player);
         
-        if (!ClientConfiguration.Instance.EnableInventorySounds)
+        if (!ClientSideConfiguration.Instance.EnableInventorySounds)
         {
             return;
         }
@@ -174,7 +174,7 @@ public sealed class MouseItemRefillPlayer : ModPlayer
     {
         base.ProcessTriggers(triggersSet);
 
-        if (!MouseItemRefillSystem.Keybind.JustPressed || !ClientConfiguration.Instance.EnableMouseRefill)
+        if (!MouseItemRefillSystem.Keybind.JustPressed || !ClientSideConfiguration.Instance.EnableMouseRefill)
         {
             return;
         }
@@ -191,7 +191,7 @@ public sealed class MouseItemRefillPlayer : ModPlayer
 
         ItemRefillUtilities.Refill(Main.mouseItem, Player);
         
-        if (!ClientConfiguration.Instance.EnableInventorySounds)
+        if (!ClientSideConfiguration.Instance.EnableInventorySounds)
         {
             return;
         }

@@ -8,13 +8,13 @@ namespace InventoryTweaks.Common.Configuration;
 /// <summary>
 ///     The client-side <see cref="ModConfig" /> implementation of Inventory Tweaks.
 /// </summary>
-public sealed class ClientConfiguration : ModConfig
+public sealed class ClientSideConfiguration : ModConfig
 {
     /// <summary>
-    ///     Gets the <see cref="ClientConfiguration" /> instance. Shorthand for
+    ///     Gets the <see cref="ClientSideConfiguration" /> instance. Shorthand for
     ///     <c>ModContent.GetInstance&lt;ClientConfiguration&gt;()</c>.
     /// </summary>
-    public static ClientConfiguration Instance => ModContent.GetInstance<ClientConfiguration>();
+    public static ClientSideConfiguration Instance => ModContent.GetInstance<ClientSideConfiguration>();
 
     public override ConfigScope Mode { get; } = ConfigScope.ClientSide;
 

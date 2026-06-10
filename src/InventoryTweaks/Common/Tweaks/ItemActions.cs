@@ -7,43 +7,75 @@ using Terraria.UI;
 namespace InventoryTweaks.Common.Tweaks;
 
 /// <summary>
-///     Handles quick-shift and quick-control interactions for item slots.
+///     Handles caching the last item slot the player used to trash an <see cref="Item"/> to prevent endless trashing.
 /// </summary>
-/// <remarks>
-///     <para>
-///         Implements quick-shift and quick-control behavior through hooks and edits in
-///         <see cref="ItemSlot" />.
-///     </para>
-///     <para>
-///         Support for these interactions is also implemented for the Magic Storage mod,
-///         allowing consistent behavior across both standard and modded inventories.
-///     </para>
-///     <para>
-///         Configuration options are available in <see cref="ClientConfiguration" />, including
-///         toggles for enabling or disabling quick-shift and quick-control features.
-///     </para>
-/// </remarks>
-public sealed class ItemActionManager : ILoadable
+public sealed class ItemTrashActionSystem : ModSystem
 {
     /// <summary>
-    ///     Gets the <see cref="ClientConfiguration" /> instance.
+    ///     Gets the index of the last item slot that the player used to trash an item.
     /// </summary>
-    private static ClientConfiguration Config => ClientConfiguration.Instance;
+    /// <value>
+    ///     Defaults to <c>-1</c>.
+    /// </value>
+    public static int Slot { get; private set; } = -1;
+    
+    public override void Load()
+    {
+        base.Load();
+        
+        On_ItemSlot.LeftClick_SellOrTrash += ItemSlot_LeftClick_SellOrTrash_Hook;
+    }
+    
+    private static bool ItemSlot_LeftClick_SellOrTrash_Hook(On_ItemSlot.orig_LeftClick_SellOrTrash orig, Item[] inv, int context, int slot)
+    {
+        var result = orig(inv, context, slot);
 
+        if (result)
+        {
+            Slot = slot;
+        }
+
+        return result;
+    }
+}
+
+/// <summary>
+///     Handles caching the last item slot the player used to trash an <see cref="Item"/> to prevent endless equipment swapping.
+/// </summary>
+public sealed class ItemEquipActionSystem : ModSystem
+{
     /// <summary>
-    ///     Gets or sets the index of the last item slot that the player used to trash an item.
+    ///     Gets the index of the last item slot that the player used to equip an item.
     /// </summary>
-    public static int LastTrashSlot { get; private set; } = -1;
+    /// <value>
+    ///     Defaults to <c>-1</c>.
+    /// </value>
+    public static int Slot { get; private set; } = -1;
 
-    /// <summary>
-    ///     Gets or sets the index of the last item slot that the player used to equip an item.
-    /// </summary>
-    public static int LastEquipSlot { get; private set; } = -1;
+    public override void Load()
+    {
+        base.Load();
+        
+        On_ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick_Hook;
+    }
+    
+    private static void ItemSlot_RightClick_Hook(On_ItemSlot.orig_RightClick_ItemArray_int_int orig, Item[] inv, int context, int slot)
+    {
+        orig(inv, context, slot);
 
+        if (!ClientSideConfiguration.Instance.EnableQuickShift)
+        {
+            return;
+        }
+
+        Slot = slot;
+    }
+}
+
+public sealed class ItemActionSystem : ILoadable
+{
     void ILoadable.Load(Mod mod)
     {
-        On_ItemSlot.LeftClick_SellOrTrash += ItemSlot_LeftClick_SellOrTrash_Hook;
-        On_ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick_Hook;
 
         IL_ItemSlot.LeftClick_ItemArray_int_int += ItemSlot_LeftClick_Edit;
         IL_ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick_Edit;
@@ -64,7 +96,11 @@ public sealed class ItemActionManager : ILoadable
     [JITWhenModsEnabled("MagicStorage")]
     public static bool CanQuickShiftMagicStorage(Item[] inv, int context, int slot)
     {
-        return ItemSlotUtilities.IsInventoryContext(context) && Main.mouseLeft && Config.EnableQuickShift && ItemSlot.ShiftInUse && IsStorageOpen(inv, context, slot);
+        return ItemSlotUtilities.IsInventoryContext(context) 
+               && Main.mouseLeft 
+               && ClientSideConfiguration.Instance.EnableQuickShift
+               && ItemSlot.ShiftInUse 
+               && IsStorageOpen(inv, context, slot);
     }
 
     /// <summary>
@@ -77,7 +113,11 @@ public sealed class ItemActionManager : ILoadable
     /// </returns>
     public static bool CanQuickShift(int context)
     {
-        return ItemSlotUtilities.IsInventoryContext(context) && Main.mouseLeft && Config.EnableQuickShift && ItemSlot.ShiftInUse && InputUtilities.HasCursorOverride;
+        return ItemSlotUtilities.IsInventoryContext(context) 
+               && Main.mouseLeft 
+               && ClientSideConfiguration.Instance.EnableQuickShift
+               && ItemSlot.ShiftInUse 
+               && InputUtilities.HasCursorOverride;
     }
 
     /// <summary>
@@ -91,55 +131,38 @@ public sealed class ItemActionManager : ILoadable
     /// </returns>
     public static bool CanQuickControl(int context, int slot)
     {
-        return ItemSlotUtilities.IsInventoryContext(context) && Main.mouseLeft && Config.EnableQuickControl && ItemSlot.ControlInUse && slot != LastTrashSlot && InputUtilities.HasCursorOverride;
+        return ItemSlotUtilities.IsInventoryContext(context) 
+               && Main.mouseLeft
+               && ClientSideConfiguration.Instance.EnableQuickControl
+               && ItemSlot.ControlInUse
+               && slot != ItemTrashActionSystem.Slot
+               && InputUtilities.HasCursorOverride;
     }
 
-    // Handles caching the last item slot used to trash an item to prevent endless trashing.
-    private static bool ItemSlot_LeftClick_SellOrTrash_Hook(On_ItemSlot.orig_LeftClick_SellOrTrash orig, Item[] inv, int context, int slot)
-    {
-        var result = orig(inv, context, slot);
-
-        if (result)
-        {
-            LastTrashSlot = slot;
-        }
-
-        return result;
-    }
-
-    // Handles caching the last item slot used to equip an item to prevent endless equipping.
-    private static void ItemSlot_RightClick_Hook(On_ItemSlot.orig_RightClick_ItemArray_int_int orig, Item[] inv, int context, int slot)
-    {
-        orig(inv, context, slot);
-
-        if (!Config.EnableQuickShift)
-        {
-            return;
-        }
-
-        LastEquipSlot = slot;
-    }
-
-    private static void ItemSlot_LeftClick_Edit(ILContext il)
+    private static void ItemSlot_LeftClick_Edit(ILContext context)
     {
         try
         {
-            var c = new ILCursor(il);
+            var cursor = new ILCursor(context);
 
-            if (!c.TryGotoNext(MoveType.Before, static i => i.MatchStloc1()))
+            if (!cursor.TryGotoNext(MoveType.Before, static i => i.MatchStloc1()))
             {
+#if DEBUG
                 throw new Exception();
+#else
+                return;
+#endif
             }
 
-            c.Index++;
+            cursor.Index++;
 
-            c.EmitLdarg0();
-            c.EmitLdarg1();
-            c.EmitLdarg2();
+            cursor.EmitLdarg0();
+            cursor.EmitLdarg1();
+            cursor.EmitLdarg2();
 
-            c.EmitLdloca(1);
+            cursor.EmitLdloca(1);
 
-            c.EmitDelegate
+            cursor.EmitDelegate
             (
                 static (Item[] inv, int context, int slot, ref bool value) =>
                 {
@@ -157,33 +180,33 @@ public sealed class ItemActionManager : ILoadable
         }
         catch (Exception)
         {
-            MonoModHooks.DumpIL(InventoryTweaks.Instance, il);
+            MonoModHooks.DumpIL(InventoryTweaks.Instance, context);
         }
     }
 
-    private static void ItemSlot_RightClick_Edit(ILContext il)
+    private static void ItemSlot_RightClick_Edit(ILContext context)
     {
         try
         {
-            var c = new ILCursor(il);
+            var cursor = new ILCursor(context);
 
-            while (c.TryGotoNext(MoveType.After, static i => i.MatchLdsfld<Main>(nameof(Main.mouseRightRelease))))
+            while (cursor.TryGotoNext(MoveType.After, static i => i.MatchLdsfld<Main>(nameof(Main.mouseRightRelease))))
             {
-                c.EmitLdarg1();
-                c.EmitLdarg2();
+                cursor.EmitLdarg1();
+                cursor.EmitLdarg2();
 
-                c.EmitDelegate
+                cursor.EmitDelegate
                 (
                     static (bool value, int context, int slot) =>
                     {
-                        return !ItemDistributionManager.Inserting && ItemSlotUtilities.IsInventoryContext(context) && (slot != LastEquipSlot || Main.mouseRightRelease);
+                        return !ItemDistributionManager.Inserting && ItemSlotUtilities.IsInventoryContext(context) && (slot != ItemEquipActionSystem.Slot || Main.mouseRightRelease);
                     }
                 );
             }
         }
         catch (Exception)
         {
-            MonoModHooks.DumpIL(InventoryTweaks.Instance, il);
+            MonoModHooks.DumpIL(InventoryTweaks.Instance, context);
         }
     }
 

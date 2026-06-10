@@ -17,7 +17,7 @@ namespace InventoryTweaks.Core.Graphics;
 ///         Effects are applied through hooks in <see cref="ItemSlot.DrawItemIcon" />.
 ///     </para>
 ///     <para>
-///         Configuration options are available in <see cref="ClientConfiguration" />, including
+///         Configuration options are available in <see cref="ClientSideConfiguration" />, including
 ///         movement smoothing, hover effects and inventory feedback sounds.
 ///     </para>
 /// </remarks>
@@ -58,9 +58,9 @@ public sealed class ItemSlotRendering : ILoadable
     }
 
     /// <summary>
-    ///     Gets the <see cref="ClientConfiguration" /> instance.
+    ///     Gets the <see cref="ClientSideConfiguration" /> instance.
     /// </summary>
-    private static ClientConfiguration Config => ClientConfiguration.Instance;
+    private static ClientSideConfiguration Config => ClientSideConfiguration.Instance;
 
     void ILoadable.Load(Mod mod)
     {

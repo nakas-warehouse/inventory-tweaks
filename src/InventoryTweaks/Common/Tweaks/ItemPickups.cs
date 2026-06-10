@@ -132,7 +132,7 @@ public sealed class ItemPickupSystem : ModSystem
     {
         var context = new ItemPickupContext(stack, slot, inventory);
 
-        switch (ClientConfiguration.Instance.StackType)
+        switch (ClientSideConfiguration.Instance.StackType)
         {
             case StackType.Full:
                 context.Stack = context.Item.stack;

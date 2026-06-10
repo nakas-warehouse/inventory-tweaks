@@ -6,7 +6,7 @@
 public static class InputUtilities
 {
     /// <summary>
-    ///     Gets whether the cursor has an override.
+    ///     Gets a value indicating whether the cursor has an override.
     /// </summary>
     public static bool HasCursorOverride => Main.cursorOverride != -1;
 }

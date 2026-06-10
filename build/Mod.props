@@ -1,0 +1,35 @@
+<Project>
+
+    <!-- Bootstrap -->
+    <PropertyGroup>
+        <TmlBuildBootstrapFeatures>tomat.environmentmodlist;tomat.enablemod;lolxd87.splashskip;tomat.assethotreloading;ppeb.netcoredbg</TmlBuildBootstrapFeatures>
+    </PropertyGroup>
+
+    <!-- Publicizer -->
+    <PropertyGroup>
+        <PublicizerClearCacheOnClean>true</PublicizerClearCacheOnClean>
+    </PropertyGroup>
+	<ItemGroup>
+		<Publicize Include="FNA" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false" />
+        <Publicize Include="ReLogic" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false" />
+	</ItemGroup>
+
+    <!-- References -->
+    <ItemGroup>
+        <Reference Include="MagicStorage">
+            <HintPath>lib\MagicStorage.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <!-- Global usings -->
+    <ItemGroup>
+        <Using Include="System"/>
+        <Using Include="Terraria"/>
+        <Using Include="Terraria.ID"/>
+        <Using Include="Terraria.ModLoader"/>
+        <Using Include="Microsoft.Xna.Framework"/>
+        <Using Include="Microsoft.Xna.Framework.Graphics"/>
+    </ItemGroup>
+
+</Project>
+ 

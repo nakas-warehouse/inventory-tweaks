@@ -1,13 +1,15 @@
 namespace InventoryTweaks;
 
 /// <summary>
-///     The <see cref="Mod" /> implementation of Inventory Tweaks.
+///     Represents the entry point for the Inventory Tweaks mod.
 /// </summary>
-public sealed class InventoryTweaks : Mod
+public sealed partial class InventoryTweaks : Mod
 {
     /// <summary>
-    ///     Gets the singleton instance of <see cref="InventoryTweaks" />. Shorthand for
-    ///     <c>ModContent.GetInstance&lt;InventoryTweaks&gt;()</c>.
+    ///     Gets the singleton instance of <see cref="InventoryTweaks" />.
     /// </summary>
+    /// <remarks>
+    ///     This property is a shorthand for <see cref="ModContent.GetInstance{T}"/>.
+    /// </remarks>
     public static InventoryTweaks Instance => ModContent.GetInstance<InventoryTweaks>();
 }

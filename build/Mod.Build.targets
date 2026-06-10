@@ -1,7 +1,0 @@
-<Project>
-
-    <Import Project="Mod.Usings.targets"/>
-    <Import Project="Mod.Publicizer.targets"/>
-
-</Project>
- 

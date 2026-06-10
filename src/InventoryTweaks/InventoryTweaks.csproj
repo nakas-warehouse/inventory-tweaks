@@ -1,15 +1,5 @@
-<Project Sdk="Tomat.Terraria.ModLoader.Sdk/2.0.0">
+<Project Sdk="Tomat.Terraria.ModLoader.Sdk/2.1.0">
 
-    <Import Project="..\..\build\Mod.Build.targets"/>
-
-    <PropertyGroup>
-        <Nullable>disable</Nullable>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <Reference Include="MagicStorage">
-            <HintPath>lib\MagicStorage.dll</HintPath>
-        </Reference>
-    </ItemGroup>
+    <Import Project="..\..\build\Mod.props"/>
 
 </Project>
