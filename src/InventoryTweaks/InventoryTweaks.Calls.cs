@@ -1,4 +1,4 @@
-﻿using InventoryTweaks.Common.Context;
+﻿using InventoryTweaks.Common.Contexts;
 using InventoryTweaks.Utilities;
 
 namespace InventoryTweaks;

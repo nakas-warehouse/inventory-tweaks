@@ -1,6 +1,6 @@
 ﻿using Terraria.UI;
 
-namespace InventoryTweaks.Common.Context;
+namespace InventoryTweaks.Common.Contexts;
 
 [Autoload(Side = ModSide.Client)]
 public sealed class PlayerContexts : ILoadable

@@ -1,81 +1,107 @@
 ﻿using System.ComponentModel;
-using System.Text.Json.Serialization;
-using InventoryTweaks.Core.Enums;
+using InventoryTweaks.Common.Pickups;
+using InventoryTweaks.Common.Sorting;
 using Terraria.ModLoader.Config;
 
 namespace InventoryTweaks.Common.Configuration;
 
-/// <summary>
-///     The client-side <see cref="ModConfig" /> implementation of Inventory Tweaks.
-/// </summary>
 public sealed class ClientSideConfiguration : ModConfig
 {
-    /// <summary>
-    ///     Gets the <see cref="ClientSideConfiguration" /> instance. Shorthand for
-    ///     <c>ModContent.GetInstance&lt;ClientConfiguration&gt;()</c>.
-    /// </summary>
     public static ClientSideConfiguration Instance => ModContent.GetInstance<ClientSideConfiguration>();
 
     public override ConfigScope Mode { get; } = ConfigScope.ClientSide;
 
-    #region Audio
-
-    [Header("Audio")]
+    [Header("Pickups")]
+    [DefaultValue(typeof(ItemPickupMode), nameof(ItemPickupMode.Single))]
+    public ItemPickupMode PickupMode { get; set; } = ItemPickupMode.Single;
+    
+    [Header("Sorting")]
+    [DefaultValue(typeof(ItemSortingMode), nameof(ItemSortingMode.Default))]
+    public ItemSortingMode SortingMode { get; set; } = ItemSortingMode.Default;
+    
+    [DefaultValue(typeof(ItemSortingDirection), nameof(ItemSortingDirection.Ascending))]
+    public ItemSortingDirection SortingDirection { get; set; } = ItemSortingDirection.Ascending;
+    
+    /// <summary>
+    ///     Gets or sets a value indicating whether to enable automatic item refills.
+    /// </summary>
+    [Header("Refills")]
     [DefaultValue(true)]
-    public bool EnableInventorySounds { get; set; } = true;
-
-    #endregion
-
-    #region Graphics
-
-    [JsonIgnore]
-    public bool EnableEffects => EnableHoverEffects || EnableMouseEffects || EnableSelectedEffects;
-
-    [Header("Graphics")]
-    [DefaultValue(true)]
-    public bool EnableMovementEffects { get; set; } = true;
-
-    [DefaultValue(true)]
-    public bool EnableHoverEffects { get; set; } = true;
-
-    [DefaultValue(true)]
-    public bool EnableMouseEffects { get; set; } = true;
-
-    [DefaultValue(true)]
-    public bool EnableSelectedEffects { get; set; } = true;
-
-    [Increment(0.05f)]
-    [Range(0.8f, 2f)]
-    [DefaultValue(1.2f)]
-    public float HoveredItemScale { get; set; } = 1.2f;
-
-    [Increment(0.05f)]
-    [Range(0.4f, 1f)]
-    [DefaultValue(0.8f)]
-    public float UnhoveredItemScale { get; set; } = 0.8f;
-
-    #endregion
-
-    #region Input
-
-    [Header("Input")]
-    [DefaultValue(true)]
-    public bool EnableQuickShift { get; set; } = true;
-
-    [DefaultValue(true)]
-    public bool EnableQuickControl { get; set; } = true;
-
-    [DefaultValue(true)]
-    public bool EnableStackRefill { get; set; } = true;
-
-    [DefaultValue(true)]
-    public bool EnableMouseRefill { get; set; } = true;
-
+    public bool EnableRefill { get; set; } = true;
+    
+    /// <summary>
+    ///     Gets or sets a value indicating whether to enable item distributions.
+    /// </summary>
+    [Header("Distribution")]
     [DefaultValue(true)]
     public bool EnableDistribution { get; set; } = true;
 
-    [DefaultValue(typeof(StackType), nameof(StackType.Single))]
-    public StackType StackType { get; set; } = StackType.Single;
+    /// <summary>
+    ///     Gets or sets a value indicating whether to enable quick shift features.
+    /// </summary>
+    [Header("Tweaks")]
+    [DefaultValue(true)]
+    public bool EnableQuickShift { get; set; } = true;
 
-    #endregion
+    /// <summary>
+    ///     Gets or sets a value indicating whether to enable quick control features.
+    /// </summary>
+    [DefaultValue(true)]
+    public bool EnableQuickControl { get; set; } = true;
+    
+    /// <summary>
+    ///     Gets or sets a value indicating whether to enable sounds for automatic item refills.
+    /// </summary>
+    [Header("Audio")]
+    [DefaultValue(true)]
+    public bool EnableRefillSounds { get; set; } = true;
+
+    /// <summary>
+    ///     Gets or sets a value indicating whether to enable sounds for user interface interactions.
+    /// </summary>
+    [DefaultValue(true)]
+    public bool EnableInterfaceSounds { get; set; } = true;
+
+    /// <summary>
+    ///     Gets or sets a value indicating whether to enable highlights for user interface elements.
+    /// </summary>
+    [Header("Interface")]
+    [DefaultValue(true)]
+    public bool EnableInterfaceHighlights { get; set; } = true;
+    
+    /// <summary>
+    ///     Gets or sets a value indicating whether to enable animations for user interface elements.
+    /// </summary>
+    [DefaultValue(true)]
+    public bool EnableInterfaceAnimations { get; set; } = true;
+    
+    /// <summary>
+    ///     Gets or sets a value indicating whether to enable animations for inventory interactions.
+    /// </summary>
+    [Header("Inventory")]
+    [DefaultValue(true)]
+    public bool EnableInventoryAnimations { get; set; } = true;
+    
+    /// <summary>
+    ///     Gets or sets the scale of items when hovered over in the inventory.
+    /// </summary>
+    [DefaultValue(1.1f)]
+    public float ActiveItemScale { get; set; } = 1.1f;
+    
+    /// <summary>
+    ///     Gets or sets the scale of items when not hovered over in the inventory.
+    /// </summary>
+    [DefaultValue(1f)]
+    public float InactiveItemScale { get; set; } = 1f;
+
+    /// <summary>
+    ///     Gets or sets the speed of inventory animations.
+    /// </summary>
+    [Range(0f, 1f)]
+    [Increment(0.05f)]
+    [DefaultValue(0.35f)]
+    public float InventoryAnimationSpeed { get; set; } = 0.35f;
+    
+    [DefaultValue(typeof(SpriteEffects), nameof(SpriteEffects.None))]
+    public SpriteEffects InventoryItemEffects { get; set; } = SpriteEffects.None;
 }

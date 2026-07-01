@@ -1,98 +1,121 @@
+UI: {
+	Buttons: {
+		Pickup: Stack Mode: {0}
+		Sort: Sorting Mode: {0} by {1}
+		Refill: Refill Enabled: {0}
+		Distribution: Distribution Enabled: {0}
+	}
+}
+
 Configs: {
-	ClientConfiguration: {
-		DisplayName: Client Configuration
+	ClientSideConfiguration: {
+		DisplayName: Client Side Configuration
 
 		Headers: {
-			Graphics: Graphics Settings
-			Input: Input Settings
+			Inventory: Inventory Settings
 			Audio: Audio Settings
+			Graphics: Graphics Settings
+			Pickups: Pickups Header
+			Sorting: Sorting Header
+			Refills: Refills Header
+			Distribution: Distribution Header
+			Tweaks: Tweaks Header
+			Interface: Interface Header
 		}
 
-		HoveredItemScale: {
-			Label: Hovered Item Scale
-			Tooltip: Adjusts the visual size of items when hovered over.
+		PickupMode: {
+			Label: Pickup Mode
+			Tooltip: ""
 		}
 
-		UnhoveredItemScale: {
-			Label: Unhovered Item Scale
-			Tooltip: Adjusts the visual size of items when not hovered over.
+		SortingMode: {
+			Label: Sorting Mode
+			Tooltip: ""
 		}
 
-		EnableHoverEffects: {
-			Label: Enable Hover Effects
-			Tooltip: Toggles visual effects applied to items when hovered over.
-		}
-
-		EnableMouseEffects: {
-			Label: Enable Mouse Effects
-			Tooltip: Toggles visual effects applied to items selected in the cursor slot.
-		}
-
-		EnableSelectedEffects: {
-			Label: Enable Selected Effects
-			Tooltip: Toggles visual effects applied to items selected in the hotbar.
+		SortingDirection: {
+			Label: Sorting Direction
+			Tooltip: ""
 		}
 
 		EnableDistribution: {
 			Label: Enable Distribution
-			Tooltip: Toggles automatic item distribution when managing inventory.
+			Tooltip: ""
 		}
 
-		EnableMovementEffects: {
-			Label: Enable Movement Effects
-			Tooltip: Toggles visual and motion effects for items when moved in the inventory.
+		EnableRefill: {
+			Label: Enable Refill
+			Tooltip: ""
+		}
+
+		EnableRefillSounds: {
+			Label: Enable Refill Sounds
+			Tooltip: ""
+		}
+
+		EnableInterfaceSounds: {
+			Label: Enable Interface Sounds
+			Tooltip: ""
+		}
+
+		EnableInterfaceShadows: {
+			Label: Enable Interface Shadows
+			Tooltip: ""
+		}
+
+		EnableInterfaceHighlights: {
+			Label: Enable Interface Highlights
+			Tooltip: ""
 		}
 
 		EnableQuickShift: {
 			Label: Enable Quick Shift
-			Tooltip: Toggles quick movement of items between inventory and containers.
+			Tooltip: ""
 		}
 
 		EnableQuickControl: {
 			Label: Enable Quick Control
-			Tooltip: Toggles quick-access controls for more efficient inventory management.
+			Tooltip: ""
 		}
 
-		EnableStackRefill: {
-			Label: Enable Stack Refill
-			Tooltip: Toggles automatic item refills in your hotbar from your inventory when depleted.
+		EnableInterfaceAnimations: {
+			Label: Enable Interface Animations
+			Tooltip: ""
 		}
 
-		EnableInventorySounds: {
-			Label: Enable Inventory Sounds
-			Tooltip: Toggles sound effects for inventory interactions.
+		EnableInventoryAnimations: {
+			Label: Enable Inventory Animations
+			Tooltip: ""
 		}
 
-		EnableMouseRefill: {
-			Label: Enable Mouse Refill
-			Tooltip: Toggles automatic item refills in the cursor slot from inventory stacks.
+		ActiveItemScale: {
+			Label: Active Item Scale
+			Tooltip: ""
 		}
 
-		StackType: {
-			Label: Stack Type
-			Tooltip:
-				'''
-				Determine the quantity of items taken from a stack when splitting:
-				- Default: Take 1 item from the stack.
-				- Half: Take half of the stack's items.
-				- Full: Take all items from the stack.
-				'''
+		InactiveItemScale: {
+			Label: Inactive Item Scale
+			Tooltip: ""
 		}
 
-		SortType: {
-			Label: Sort Type
-			Tooltip:
-				'''
-				Determine which item stacks are prioritized during stack refills:
-				- Ascending: Prioritize items with smaller stacks.
-				- Descending: Prioritize items with larger stacks.
-				'''
+		InventoryAnimationSpeed: {
+			Label: Inventory Animation Speed
+			Tooltip: ""
+		}
+
+		InventoryItemEffects: {
+			Label: Inventory Item Effects
+			Tooltip: ""
 		}
 	}
 
-	StackType: {
-		Tooltip: Determine how stack splitting behaves.
-		Default.Label: Default
+	ItemPickupMode: {
+		Tooltip: ""
+
+		Single: {
+			Label: Single
+			Tooltip: ""
+		}
 
 		Half: {
 			Label: Half
@@ -104,14 +127,48 @@ Configs: {
 			Tooltip: ""
 		}
 
-		Single: {
-			Label: Single
+		Random: {
+			Label: Random
 			Tooltip: ""
 		}
 	}
 
-	SortType: {
-		Tooltip: Determine how stacks are prioritized during refills.
+	ItemSortingMode: {
+		Tooltip: ""
+
+		Vanilla: {
+			Label: Vanilla
+			Tooltip: ""
+		}
+
+		Value: {
+			Label: Value
+			Tooltip: ""
+		}
+
+		Type: {
+			Label: Type
+			Tooltip: ""
+		}
+
+		Default: {
+			Label: Default
+			Tooltip: ""
+		}
+
+		Damage: {
+			Label: Damage
+			Tooltip: ""
+		}
+
+		Rarity: {
+			Label: Rarity
+			Tooltip: ""
+		}
+	}
+
+	ItemSortingDirection: {
+		Tooltip: ""
 
 		Ascending: {
 			Label: Ascending
@@ -125,4 +182,4 @@ Configs: {
 	}
 }
 
-Keybinds.Keybind.DisplayName: Mouse Refill
+"Keybinds.InventoryTweaks:ItemRefillKeybindSystem.DisplayName": Inventory Tweaks: Item Refill Keybind System

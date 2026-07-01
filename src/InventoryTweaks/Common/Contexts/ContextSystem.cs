@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace InventoryTweaks.Common.Context;
+namespace InventoryTweaks.Common.Contexts;
 
 [Autoload(Side = ModSide.Client)]
 public sealed class ContextSystem : ModSystem

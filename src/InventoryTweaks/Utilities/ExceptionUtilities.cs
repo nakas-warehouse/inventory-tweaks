@@ -2,7 +2,7 @@
 
 namespace InventoryTweaks.Utilities;
 
-public static class ArgumentNullExceptionUtilities
+public static class ArgumentExceptionExtensions
 {
     extension(ArgumentException)
     {
@@ -15,13 +15,16 @@ public static class ArgumentNullExceptionUtilities
         /// <param name="paramName">
         ///     The name of the parameter with which <paramref name="argument"/> corresponds.
         /// </param>
+        /// <typeparam name="TValue">
+        ///     The type of the elements in <paramref name="argument"/>.
+        /// </typeparam>
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="argument"/> is <see langword="null"/>.
         /// </exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="argument"/> is empty.
         /// </exception>
-        public static void ThrowIfNullOrEmpty(object[] argument, [CallerArgumentExpression(nameof(argument))] string? paramName = null)
+        public static void ThrowIfNullOrEmpty<TValue>(TValue[] argument, [CallerArgumentExpression(nameof(argument))] string? paramName = null)
         {
             ArgumentNullException.ThrowIfNull(argument);
             
@@ -32,7 +35,7 @@ public static class ArgumentNullExceptionUtilities
             
             throw new ArgumentException("Array cannot be empty.", paramName);
         }
-
+        
         /// <summary>
         ///     Throws an exception if <paramref name="argument"/> is <see langword="null"/> or has fewer than <paramref name="length"/> elements.
         /// </summary>
@@ -45,13 +48,16 @@ public static class ArgumentNullExceptionUtilities
         /// <param name="paramName">
         ///     The name of the parameter with which <paramref name="argument"/> corresponds.
         /// </param>
+        /// <typeparam name="TValue">
+        ///     The type of the elements in <paramref name="argument"/>.
+        /// </typeparam>
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="argument"/> is <see langword="null"/>.
         /// </exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="argument"/> has fewer than <paramref name="length"/> elements.
         /// </exception>
-        public static void ThrowIfNullOrSmallerThan(object[] argument, int length, [CallerArgumentExpression(nameof(argument))] string? paramName = null)
+        public static void ThrowIfNullOrSmallerThan<TValue>(TValue[] argument, int length, [CallerArgumentExpression(nameof(argument))] string? paramName = null)
         {
             ArgumentNullException.ThrowIfNull(argument);
 

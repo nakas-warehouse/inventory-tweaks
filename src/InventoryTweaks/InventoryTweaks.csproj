@@ -2,4 +2,8 @@
 
     <Import Project="..\..\build\Mod.props"/>
 
+    <ItemGroup>
+      <Folder Include="Assets\Textures\UI\" />
+    </ItemGroup>
+
 </Project>
